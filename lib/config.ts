@@ -7,4 +7,5 @@ export const keycloakConfig = {
 export const apiConfig = {
   baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL || "/api",
   appKey: process.env.NEXT_PUBLIC_APP_KEY || "",
+  tenantId: process.env.NEXT_PUBLIC_TENANT_ID || "rms-template",
 };

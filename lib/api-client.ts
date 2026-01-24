@@ -11,6 +11,7 @@ export async function fetchJson<TResponse>(
     ...rest,
     headers: {
       "Content-Type": "application/json",
+      "X-Tenant-ID": apiConfig.tenantId,
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...headers,
     },

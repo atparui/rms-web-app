@@ -35,6 +35,11 @@ export function Sidebar({ items, loading, error }: SidebarProps) {
             {error}
           </div>
         )}
+        {!loading && !error && items.length === 0 && (
+          <div className="rounded-md border bg-card px-3 py-2 text-sm text-muted-foreground">
+            No menu items returned.
+          </div>
+        )}
         {!loading && !error && items.map((item) => renderNode(item, pathname))}
       </div>
     </aside>
