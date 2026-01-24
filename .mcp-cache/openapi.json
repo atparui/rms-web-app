@@ -14,7 +14,7 @@
         "name": "unlicensed",
         "url": ""
       },
-      "version": "0.0.1.50-e87270b"
+      "version": ""
     },
     "servers": [
       {
@@ -870,6 +870,142 @@
           }
         }
       },
+      "/api/role-permissions/{id}": {
+        "get": {
+          "tags": [
+            "role-permission-resource"
+          ],
+          "operationId": "getRolePermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RolePermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "role-permission-resource"
+          ],
+          "operationId": "updateRolePermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RolePermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "role-permission-resource"
+          ],
+          "operationId": "deleteRolePermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "role-permission-resource"
+          ],
+          "operationId": "partialUpdateRolePermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePermissionDTO"
+                }
+              },
+              "application/merge-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RolePermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "/api/rms-users/{id}": {
         "get": {
           "tags": [
@@ -1135,6 +1271,142 @@
                 "*/*": {
                   "schema": {
                     "$ref": "#/components/schemas/RestaurantDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/permissions/{id}": {
+        "get": {
+          "tags": [
+            "permission-resource"
+          ],
+          "operationId": "getPermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "permission-resource"
+          ],
+          "operationId": "updatePermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "permission-resource"
+          ],
+          "operationId": "deletePermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "permission-resource"
+          ],
+          "operationId": "partialUpdatePermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionDTO"
+                }
+              },
+              "application/merge-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PermissionDTO"
                   }
                 }
               }
@@ -2033,6 +2305,142 @@
                 "*/*": {
                   "schema": {
                     "$ref": "#/components/schemas/OrderItemCustomizationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/menu-permissions/{id}": {
+        "get": {
+          "tags": [
+            "menu-permission-resource"
+          ],
+          "operationId": "getMenuPermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MenuPermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "menu-permission-resource"
+          ],
+          "operationId": "updateMenuPermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuPermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MenuPermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "menu-permission-resource"
+          ],
+          "operationId": "deleteMenuPermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "menu-permission-resource"
+          ],
+          "operationId": "partialUpdateMenuPermission",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuPermissionDTO"
+                }
+              },
+              "application/merge-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuPermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MenuPermissionDTO"
                   }
                 }
               }
@@ -4345,6 +4753,142 @@
           }
         }
       },
+      "/api/app-menus/{id}": {
+        "get": {
+          "tags": [
+            "app-menu-resource"
+          ],
+          "operationId": "getAppMenu",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AppMenuDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "app-menu-resource"
+          ],
+          "operationId": "updateAppMenu",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppMenuDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AppMenuDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "app-menu-resource"
+          ],
+          "operationId": "deleteAppMenu",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "app-menu-resource"
+          ],
+          "operationId": "partialUpdateAppMenu",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppMenuDTO"
+                }
+              },
+              "application/merge-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppMenuDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AppMenuDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "/api/user-sync-logs": {
         "get": {
           "tags": [
@@ -4866,6 +5410,93 @@
           }
         }
       },
+      "/api/role-permissions": {
+        "get": {
+          "tags": [
+            "role-permission-resource"
+          ],
+          "operationId": "getAllRolePermissions",
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Zero-based page index (0..N)",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 0,
+                "minimum": 0
+              }
+            },
+            {
+              "name": "size",
+              "in": "query",
+              "description": "The size of the page to be returned",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RolePermissionDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "role-permission-resource"
+          ],
+          "operationId": "createRolePermission",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RolePermissionDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "/api/rmsservice-kafka/publish": {
         "post": {
           "tags": [
@@ -5124,6 +5755,93 @@
                 "*/*": {
                   "schema": {
                     "$ref": "#/components/schemas/RestaurantDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/permissions": {
+        "get": {
+          "tags": [
+            "permission-resource"
+          ],
+          "operationId": "getAllPermissions",
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Zero-based page index (0..N)",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 0,
+                "minimum": 0
+              }
+            },
+            {
+              "name": "size",
+              "in": "query",
+              "description": "The size of the page to be returned",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PermissionDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "permission-resource"
+          ],
+          "operationId": "createPermission",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PermissionDTO"
                   }
                 }
               }
@@ -5665,6 +6383,93 @@
                 "*/*": {
                   "schema": {
                     "$ref": "#/components/schemas/OrderItemCustomizationDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/menu-permissions": {
+        "get": {
+          "tags": [
+            "menu-permission-resource"
+          ],
+          "operationId": "getAllMenuPermissions",
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Zero-based page index (0..N)",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 0,
+                "minimum": 0
+              }
+            },
+            {
+              "name": "size",
+              "in": "query",
+              "description": "The size of the page to be returned",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/MenuPermissionDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "menu-permission-resource"
+          ],
+          "operationId": "createMenuPermission",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuPermissionDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MenuPermissionDTO"
                   }
                 }
               }
@@ -7016,6 +7821,93 @@
                 "*/*": {
                   "schema": {
                     "$ref": "#/components/schemas/AppNavigationMenuItemDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/app-menus": {
+        "get": {
+          "tags": [
+            "app-menu-resource"
+          ],
+          "operationId": "getAllAppMenus",
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "description": "Zero-based page index (0..N)",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 0,
+                "minimum": 0
+              }
+            },
+            {
+              "name": "size",
+              "in": "query",
+              "description": "The size of the page to be returned",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "default": 20,
+                "minimum": 1
+              }
+            },
+            {
+              "name": "sort",
+              "in": "query",
+              "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+              "required": false,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AppMenuDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "app-menu-resource"
+          ],
+          "operationId": "createAppMenu",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppMenuDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AppMenuDTO"
                   }
                 }
               }
@@ -8686,6 +9578,39 @@
             }
           }
         }
+      },
+      "/api/app-menus/tree": {
+        "get": {
+          "tags": [
+            "app-menu-access-resource"
+          ],
+          "operationId": "getMenuTree",
+          "parameters": [
+            {
+              "name": "appKey",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AppMenuTreeDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "components": {
@@ -9244,6 +10169,46 @@
           "required": [
             "assignmentDate"
           ]
+        },
+        "RolePermissionDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "role": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "permissionId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "PermissionDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "code": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "scope": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            }
+          }
         },
         "BillDTO": {
           "type": "object",
@@ -9897,6 +10862,23 @@
             "unitPrice"
           ]
         },
+        "MenuPermissionDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "appMenuId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "permissionId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
         "InventoryDTO": {
           "type": "object",
           "properties": {
@@ -10295,6 +11277,47 @@
           "required": [
             "role"
           ]
+        },
+        "AppMenuDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "menuKey": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "routePath": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "sortOrder": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "permissionLogic": {
+              "type": "string"
+            },
+            "appKey": {
+              "type": "string"
+            },
+            "parentId": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         },
         "UserBranchRoleAssignmentDTO": {
           "type": "object",
@@ -11173,9 +12196,43 @@
               }
             }
           }
+        },
+        "AppMenuTreeDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "menuKey": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "routePath": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "sortOrder": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "requiredPermissions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
         }
       }
     }
   },
-  "timestamp": 1767551300844
+  "timestamp": 1769162531084
 }

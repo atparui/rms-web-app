@@ -212,17 +212,25 @@ class APIDocsMCPServer {
     // Call a tool
     this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name, arguments: args } = request.params;
+      const asString = (value: unknown) =>
+        typeof value === 'string' ? value : undefined;
 
       try {
         switch (name) {
           case 'sync-api-docs':
             return await this.syncAPIDocs(args?.force === true);
         
-          case 'get-endpoint-schema':
-            return await this.getEndpointSchema(args?.path, args?.method);
+          case 'get-endpoint-schema': {
+            const path = asString(args?.path);
+            const method = asString(args?.method);
+            return await this.getEndpointSchema(path, method);
+          }
         
-          case 'search-endpoints':
-            return await this.searchEndpoints(args?.query, args?.tag);
+          case 'search-endpoints': {
+            const query = asString(args?.query);
+            const tag = asString(args?.tag);
+            return await this.searchEndpoints(query, tag);
+          }
         
           default:
             throw new Error(`Unknown tool: ${name}`);
