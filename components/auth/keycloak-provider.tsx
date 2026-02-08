@@ -85,6 +85,26 @@ export function AuthProvider({ children }: PropsWithChildren) {
           } catch {
             setProfile(null);
           }
+          
+          // Clean up OAuth2 callback parameters from URL
+          if (typeof window !== 'undefined') {
+            const url = new URL(window.location.href);
+            const params = url.searchParams;
+            
+            // Remove Keycloak OAuth2 callback parameters
+            if (params.has('state') || params.has('session_state') || params.has('code') || params.has('iss')) {
+              params.delete('state');
+              params.delete('session_state');
+              params.delete('code');
+              params.delete('iss');
+              
+              // Update URL without reloading the page
+              const cleanUrl = url.pathname + (params.toString() ? '?' + params.toString() : '');
+              window.history.replaceState({}, '', cleanUrl);
+              
+              console.log('[auth] Cleaned OAuth2 parameters from URL');
+            }
+          }
         }
       })
       .catch((err) => {

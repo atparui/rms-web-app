@@ -1,0 +1,37 @@
+#!/bin/bash
+
+echo "=========================================="
+echo "DEPLOYMENT GUIDE - All Fixes"
+echo "=========================================="
+echo ""
+
+echo "Step 1: Deploy rms-service (10 min)"
+echo "-----------------------------------"
+echo "cd /home/sivakumar/Shiva/Workspace/platform"
+echo "docker-compose build rms-service"
+echo "docker-compose up -d rms-service"
+echo "sleep 30"
+echo "docker logs --tail 50 rms-service"
+echo ""
+
+echo "Step 2: Update menu database (2 min)"  
+echo "-------------------------------------"
+echo "docker exec -it foundation-postgres psql -U postgres -d rms_demo"
+echo "UPDATE app_menu SET route_path = '/restaurants' WHERE route_path = '/restaurant';"
+echo "SELECT id, label, route_path FROM app_menu WHERE label LIKE '%Restaurant%';"
+echo "\\q"
+echo ""
+
+echo "Step 3: Test (5 min)"
+echo "--------------------"
+echo "1. Visit: https://rms-demo.atparui.com"
+echo "2. Login"
+echo "3. Click 'Restaurants' menu"
+echo "4. Check DevTools → Network → Should see X-Tenant-ID header"
+echo "5. Check logs → Should see tenant: rms-demo (not console)"
+echo "6. Test CRUD operations"
+echo ""
+
+echo "=========================================="
+echo "Total time: ~17 minutes"
+echo "=========================================="
