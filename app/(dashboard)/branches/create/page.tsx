@@ -243,7 +243,7 @@ export default function CreateBranchPage() {
                   value={formData.latitude}
                   onChange={(value) => handleChange('latitude', value)}
                   placeholder="e.g., 40.7128"
-                  step="any"
+                  step={0}
                 />
 
                 <NumberField
@@ -252,7 +252,7 @@ export default function CreateBranchPage() {
                   value={formData.longitude}
                   onChange={(value) => handleChange('longitude', value)}
                   placeholder="e.g., -74.0060"
-                  step="any"
+                  step={0}
                 />
               </div>
             </div>
