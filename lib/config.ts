@@ -13,12 +13,12 @@ export const apiConfig = {
   // API Origin (gateway URL without path)
   apiOrigin:
     process.env.NEXT_PUBLIC_API_ORIGIN ||
-    "https://rms-demo.atparui.com",
+    "https://console.atparui.com",
   
   // Legacy base URL (for compatibility with existing code)
   baseUrl:
     process.env.NEXT_PUBLIC_API_BASE_URL ||
-    "https://rms-demo.atparui.com/services/rms-service/api",
+    "https://console.atparui.com/services/rms-service/api",
   
   // Application configuration
   appKey: process.env.NEXT_PUBLIC_APP_KEY || "RMS",
