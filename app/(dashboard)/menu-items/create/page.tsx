@@ -148,7 +148,7 @@ export default function CreateMenuItemPage() {
                 onChange={(value) => handleChange('basePrice', value)}
                 required
                 placeholder="0.00"
-                step="0.01"
+                step={0}
               />
 
               <TextField
