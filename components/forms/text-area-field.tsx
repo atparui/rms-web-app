@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 export interface TextAreaFieldProps {
   id: string;
   label: string;
-  value: string;
+  value: string | undefined;
   onChange: (value: string) => void;
   placeholder?: string;
   required?: boolean;

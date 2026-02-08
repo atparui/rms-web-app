@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 export interface NumberFieldProps {
   id: string;
   label: string;
-  value: number;
+  value: number | undefined;
   onChange: (value: number) => void;
   placeholder?: string;
   required?: boolean;

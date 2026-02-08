@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 export interface TextFieldProps {
   id: string;
   label: string;
-  value: string;
+  value: string | undefined;
   onChange: (value: string) => void;
   placeholder?: string;
   required?: boolean;
@@ -54,7 +54,7 @@ export function TextField({
       <Input
         id={id}
         type={type}
-        value={value}
+        value={value || ''}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
