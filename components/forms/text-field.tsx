@@ -13,7 +13,7 @@ export interface TextFieldProps {
   disabled?: boolean;
   error?: string;
   helpText?: string;
-  type?: 'text' | 'email' | 'tel' | 'url' | 'password';
+  type?: 'text' | 'email' | 'tel' | 'url' | 'password' | 'time';
   maxLength?: number;
   className?: string;
 }

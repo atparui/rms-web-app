@@ -151,7 +151,7 @@ export default function EditMenuItemPage() {
               <SelectField
                 id="categoryId"
                 label="Category"
-                value={formData.categoryId}
+                value={formData.categoryId || ''}
                 onChange={(value) => handleChange('categoryId', value)}
                 options={categories.map(c => ({ value: c.id, label: c.name }))}
                 required
@@ -182,7 +182,7 @@ export default function EditMenuItemPage() {
                 onChange={(value) => handleChange('basePrice', value)}
                 required
                 placeholder="0.00"
-                step="0.01"
+                step={0.01}
               />
 
               <TextField

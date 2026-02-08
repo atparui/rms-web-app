@@ -12,6 +12,7 @@ export interface CheckboxFieldProps {
   error?: string;
   helpText?: string;
   className?: string;
+  description?: string;
 }
 
 /**

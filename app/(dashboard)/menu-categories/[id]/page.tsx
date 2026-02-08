@@ -157,7 +157,7 @@ export default function EditMenuCategoryPage() {
               label="Active"
               checked={formData.isActive || false}
               onChange={(checked) => handleChange('isActive', checked)}
-              description="Category is visible in the menu"
+              
             />
 
             <div className="flex gap-4 pt-4">
