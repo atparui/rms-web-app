@@ -70,7 +70,7 @@ export default function RestaurantCreatePage() {
         title="Create Restaurant"
         description="Add a new restaurant to the system"
         backButton={
-          <Link href="/restaurant">
+          <Link href="/restaurants">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Restaurants
