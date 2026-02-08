@@ -38,7 +38,7 @@ import { apiConfig } from './config';
 
 // API Base Configuration
 const API_BASE_URL = apiConfig.apiOrigin || 'https://rms-demo.atparui.com';
-const API_PATH = '/services/rms/api';
+const API_PATH = '/services/rms-service/api';
 
 /**
  * Fetch wrapper with authentication and error handling

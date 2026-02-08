@@ -636,25 +636,25 @@ async function fetchWithAuth(url: string, options: RequestInit = {}) {
 
 export const restaurantApi = {
   getAll: (): Promise<Restaurant[]> => 
-    fetchWithAuth(`${API_BASE_URL}/services/rms/api/restaurants`),
+    fetchWithAuth(`${API_BASE_URL}/services/rms-service/api/restaurants`),
   
   getById: (id: string): Promise<Restaurant> => 
-    fetchWithAuth(`${API_BASE_URL}/services/rms/api/restaurants/${id}`),
+    fetchWithAuth(`${API_BASE_URL}/services/rms-service/api/restaurants/${id}`),
   
   create: (data: RestaurantCreate): Promise<Restaurant> => 
-    fetchWithAuth(`${API_BASE_URL}/services/rms/api/restaurants`, {
+    fetchWithAuth(`${API_BASE_URL}/services/rms-service/api/restaurants`, {
       method: 'POST',
       body: JSON.stringify(data),
     }),
   
   update: (data: RestaurantUpdate): Promise<Restaurant> => 
-    fetchWithAuth(`${API_BASE_URL}/services/rms/api/restaurants/${data.id}`, {
+    fetchWithAuth(`${API_BASE_URL}/services/rms-service/api/restaurants/${data.id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     }),
   
   delete: (id: string): Promise<void> => 
-    fetchWithAuth(`${API_BASE_URL}/services/rms/api/restaurants/${id}`, {
+    fetchWithAuth(`${API_BASE_URL}/services/rms-service/api/restaurants/${id}`, {
       method: 'DELETE',
     }),
 };

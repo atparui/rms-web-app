@@ -15,21 +15,10 @@ pipeline {
             }
         }
         
-        stage('Install Dependencies') {
-            steps {
-                script {
-                    echo '📦 Installing npm dependencies...'
-                    sh """
-                        npm install
-                    """
-                }
-            }
-        }
-        
         stage('Build Docker Image') {
             steps {
                 script {
-                    echo '🐋 Building Docker image...'
+                    echo '🐋 Building Docker image (npm install happens inside Docker)...'
                     sh """
                         docker build \
                             --tag ${DOCKER_IMAGE}:${BUILD_NUMBER} \

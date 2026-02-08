@@ -174,7 +174,7 @@ import { apiConfig } from './config';
 
 // Use environment variable for API base URL
 const API_BASE_URL = apiConfig.apiOrigin || 'https://rms-demo.atparui.com';
-const API_PATH = '/services/rms/api';  // Gateway routing path
+const API_PATH = '/services/rms-service/api';  // Gateway routing path
 
 async function fetchWithAuth(url: string, options: RequestInit = {}) {
   const token = typeof window !== 'undefined' ? localStorage.getItem('kc_token') : null;
@@ -834,7 +834,7 @@ curl -X POST "https://auth.atparui.com/realms/rms-demo/protocol/openid-connect/t
   -d "password=gwadmin"
 
 # Use token to test restaurants endpoint
-curl -X GET "https://rms-demo.atparui.com/services/rms/api/restaurants" \
+curl -X GET "https://rms-demo.atparui.com/services/rms-service/api/restaurants" \
   -H "Authorization: Bearer YOUR_TOKEN_HERE"
 ```
 

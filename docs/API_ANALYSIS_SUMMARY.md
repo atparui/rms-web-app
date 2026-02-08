@@ -8,7 +8,7 @@ Analysis of the RMS Service OpenAPI specification cached at `.mcp-cache/openapi.
 
 - **Total Endpoints**: 128
 - **Total Schemas**: 67
-- **Base Path**: `/services/rms/api`
+- **Base Path**: `/services/rms-service/api`
 - **Authentication**: Bearer token (Keycloak)
 
 ## Resources by Category
@@ -225,7 +225,7 @@ password=gwadmin
 All requests go through the Gateway at `https://rms-demo.atparui.com`:
 
 ```
-https://rms-demo.atparui.com/services/rms/api/{endpoint}
+https://rms-demo.atparui.com/services/rms-service/api/{endpoint}
 ```
 
 Gateway handles:
@@ -330,15 +330,15 @@ TOKEN=$(curl -s -X POST "https://auth.atparui.com/realms/rms-demo/protocol/openi
   -d "password=gwadmin" | jq -r .access_token)
 
 # 2. Test restaurants endpoint
-curl -X GET "https://rms-demo.atparui.com/services/rms/api/restaurants" \
+curl -X GET "https://rms-demo.atparui.com/services/rms-service/api/restaurants" \
   -H "Authorization: Bearer $TOKEN" | jq
 
 # 3. Test branches endpoint
-curl -X GET "https://rms-demo.atparui.com/services/rms/api/branches" \
+curl -X GET "https://rms-demo.atparui.com/services/rms-service/api/branches" \
   -H "Authorization: Bearer $TOKEN" | jq
 
 # 4. Test menu items endpoint
-curl -X GET "https://rms-demo.atparui.com/services/rms/api/menu-items" \
+curl -X GET "https://rms-demo.atparui.com/services/rms-service/api/menu-items" \
   -H "Authorization: Bearer $TOKEN" | jq
 ```
 

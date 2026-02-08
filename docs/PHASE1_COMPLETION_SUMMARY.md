@@ -176,7 +176,7 @@ Created complete API client with all endpoints (`lib/api-client.ts`):
 ✅ **Environment Variables** (`.env.example`)
 ```bash
 NEXT_PUBLIC_API_ORIGIN=https://rms-demo.atparui.com
-NEXT_PUBLIC_API_BASE_URL=https://rms-demo.atparui.com/services/rms/api
+NEXT_PUBLIC_API_BASE_URL=https://rms-demo.atparui.com/services/rms-service/api
 NEXT_PUBLIC_APP_KEY=RMS
 NEXT_PUBLIC_KEYCLOAK_URL=https://auth.atparui.com
 NEXT_PUBLIC_KEYCLOAK_REALM=rms-demo
@@ -248,11 +248,11 @@ TOKEN=$(curl -s -X POST "https://auth.atparui.com/realms/rms-demo/protocol/openi
   -d "password=gwadmin" | jq -r .access_token)
 
 # Test restaurants endpoint
-curl -X GET "https://rms-demo.atparui.com/services/rms/api/restaurants" \
+curl -X GET "https://rms-demo.atparui.com/services/rms-service/api/restaurants" \
   -H "Authorization: Bearer $TOKEN" | jq
 
 # Test branches endpoint
-curl -X GET "https://rms-demo.atparui.com/services/rms/api/branches" \
+curl -X GET "https://rms-demo.atparui.com/services/rms-service/api/branches" \
   -H "Authorization: Bearer $TOKEN" | jq
 ```
 
