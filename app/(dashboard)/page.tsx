@@ -70,7 +70,7 @@ export default function DashboardPage() {
           <div className="space-y-1">
             <p className="text-sm font-medium">Restaurants</p>
             <p className="text-xs text-muted-foreground">
-              Replace this mock data with `/api/restaurants` once endpoints are wired.
+              Navigate to /restaurants to manage restaurants.
             </p>
           </div>
           <div className="flex items-center gap-2">

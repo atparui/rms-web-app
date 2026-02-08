@@ -72,6 +72,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
         setKc(instance);
         setAuthenticated(auth);
         setToken(instance.token || undefined);
+        
+        // Store token in localStorage for API client
+        if (instance.token) {
+          localStorage.setItem('kc_token', instance.token);
+        }
+        
         if (auth) {
           try {
             const userProfile = await instance.loadUserProfile();
@@ -98,6 +104,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const logout = useCallback(
     async (redirectUri?: string) => {
       if (!kc) return;
+      // Clear token from localStorage on logout
+      localStorage.removeItem('kc_token');
       await kc.logout({ redirectUri: redirectUri || window.location.origin });
     },
     [kc]
@@ -108,6 +116,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
     if (kc.isTokenExpired(30)) {
       try {
         await kc.updateToken(30);
+        // Update localStorage after token refresh
+        if (kc.token) {
+          localStorage.setItem('kc_token', kc.token);
+        }
       } catch {
         await kc.login();
         return undefined;
@@ -115,6 +127,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
     }
     const currentToken = kc.token || undefined;
     setToken(currentToken);
+    // Ensure token is in localStorage
+    if (currentToken) {
+      localStorage.setItem('kc_token', currentToken);
+    }
     return currentToken;
   }, [kc]);
 

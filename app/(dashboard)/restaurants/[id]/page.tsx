@@ -118,7 +118,7 @@ export default function RestaurantEditPage() {
         title="Edit Restaurant"
         description="Update restaurant information"
         backButton={
-          <Link href="/restaurants">
+          <Link href="/restaurant">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Restaurants

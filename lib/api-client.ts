@@ -41,14 +41,36 @@ const API_BASE_URL = apiConfig.apiOrigin || 'https://console.atparui.com';
 const API_PATH = '/services/rms-service/api';
 
 /**
+ * Extract tenant ID from JWT token
+ */
+function getTenantIdFromToken(token: string): string | null {
+  try {
+    // JWT structure: header.payload.signature
+    const payload = token.split('.')[1];
+    if (!payload) return null;
+    
+    // Decode base64url
+    const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+    return decoded.tenant_id || null;
+  } catch (error) {
+    console.error('[api-client] Failed to extract tenant_id from token:', error);
+    return null;
+  }
+}
+
+/**
  * Fetch wrapper with authentication and error handling
  */
 async function fetchWithAuth(url: string, options: RequestInit = {}) {
   const token = typeof window !== 'undefined' ? localStorage.getItem('kc_token') : null;
   
+  // Extract tenant ID from token
+  const tenantId = token ? getTenantIdFromToken(token) : null;
+  
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     ...(token && { 'Authorization': `Bearer ${token}` }),
+    ...(tenantId && { 'X-Tenant-ID': tenantId }),
     ...options.headers,
   };
 
@@ -532,12 +554,23 @@ export async function fetchJson<T>(endpoint: string, options?: { token?: string 
     'Content-Type': 'application/json',
   };
   
+  let token: string | null = null;
+  
   if (options?.token) {
-    headers['Authorization'] = `Bearer ${options.token}`;
+    token = options.token;
+    headers['Authorization'] = `Bearer ${token}`;
   } else if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('kc_token');
+    token = localStorage.getItem('kc_token');
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
+    }
+  }
+  
+  // Add tenant ID header
+  if (token) {
+    const tenantId = getTenantIdFromToken(token);
+    if (tenantId) {
+      headers['X-Tenant-ID'] = tenantId;
     }
   }
   
