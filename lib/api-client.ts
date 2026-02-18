@@ -33,6 +33,26 @@ import {
   MenuItemUpdate,
   MenuItemSearchParams,
   MenuItemAvailabilityUpdate,
+  Customer,
+  CustomerCreate,
+  CustomerUpdate,
+  CustomerSearchParams,
+  Inventory,
+  InventoryCreate,
+  InventoryUpdate,
+  Order,
+  OrderCreate,
+  OrderUpdate,
+  Bill,
+  BillCreate,
+  BillUpdate,
+  BranchTable,
+  BranchTableCreate,
+  BranchTableUpdate,
+  BranchTableSearchParams,
+  TableAssignment,
+  TableAssignmentCreate,
+  TableAssignmentUpdate,
 } from '@/types';
 import { apiConfig } from './config';
 
@@ -540,6 +560,150 @@ export const menuItemApi = {
     fetchWithAuth(`${API_BASE_URL}${API_PATH}/menu-items/${id}`, {
       method: 'DELETE',
     }),
+};
+
+// ============================================================================
+// Customer API
+// ============================================================================
+
+export const customerApi = {
+  getAll: (): Promise<Customer[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/customers`),
+  getById: (id: string): Promise<Customer> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/customers/${id}`),
+  search: (params?: CustomerSearchParams): Promise<Customer[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/customers/_search${buildQueryString(params)}`),
+  create: (data: CustomerCreate): Promise<Customer> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/customers`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  update: (data: CustomerUpdate): Promise<Customer> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/customers/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+  delete: (id: string): Promise<void> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/customers/${id}`, { method: 'DELETE' }),
+};
+
+// ============================================================================
+// Inventory API
+// ============================================================================
+
+export const inventoryApi = {
+  getAll: (): Promise<Inventory[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/inventories`),
+  getById: (id: string): Promise<Inventory> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/inventories/${id}`),
+  create: (data: InventoryCreate): Promise<Inventory> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/inventories`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  update: (data: InventoryUpdate): Promise<Inventory> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/inventories/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+  delete: (id: string): Promise<void> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/inventories/${id}`, { method: 'DELETE' }),
+};
+
+// ============================================================================
+// Order API
+// ============================================================================
+
+export const orderApi = {
+  getAll: (): Promise<Order[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/orders`),
+  getById: (id: string): Promise<Order> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/orders/${id}`),
+  create: (data: OrderCreate): Promise<Order> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/orders`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  update: (data: OrderUpdate): Promise<Order> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/orders/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+  delete: (id: string): Promise<void> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/orders/${id}`, { method: 'DELETE' }),
+};
+
+// ============================================================================
+// Bill API
+// ============================================================================
+
+export const billApi = {
+  getAll: (): Promise<Bill[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/bills`),
+  getById: (id: string): Promise<Bill> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/bills/${id}`),
+  search: (params?: Record<string, unknown>): Promise<Bill[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/bills/_search${buildQueryString(params)}`),
+  create: (data: BillCreate): Promise<Bill> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/bills`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  update: (data: BillUpdate): Promise<Bill> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/bills/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+  delete: (id: string): Promise<void> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/bills/${id}`, { method: 'DELETE' }),
+};
+
+// ============================================================================
+// Branch Table API
+// ============================================================================
+
+export const branchTableApi = {
+  getAll: (): Promise<BranchTable[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/branch-tables`),
+  getById: (id: string): Promise<BranchTable> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/branch-tables/${id}`),
+  search: (params?: BranchTableSearchParams): Promise<BranchTable[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/branch-tables/_search${buildQueryString(params)}`),
+  create: (data: BranchTableCreate): Promise<BranchTable> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/branch-tables`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  update: (data: BranchTableUpdate): Promise<BranchTable> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/branch-tables/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+  delete: (id: string): Promise<void> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/branch-tables/${id}`, { method: 'DELETE' }),
+};
+
+// ============================================================================
+// Table Assignment API (Table Roster)
+// ============================================================================
+
+export const tableAssignmentApi = {
+  getAll: (): Promise<TableAssignment[]> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/table-assignments`),
+  getById: (id: string): Promise<TableAssignment> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/table-assignments/${id}`),
+  create: (data: TableAssignmentCreate): Promise<TableAssignment> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/table-assignments`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  update: (data: TableAssignmentUpdate): Promise<TableAssignment> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/table-assignments/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    }),
+  delete: (id: string): Promise<void> =>
+    fetchWithAuth(`${API_BASE_URL}${API_PATH}/table-assignments/${id}`, { method: 'DELETE' }),
 };
 
 // ============================================================================

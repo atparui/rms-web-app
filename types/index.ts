@@ -15,3 +15,11 @@ export * from './role';
 // Menu entities
 export * from './menu-category';
 export * from './menu-item';
+
+// Customer, Inventory, Orders, Billing, Tables
+export * from './customer';
+export * from './inventory';
+export * from './order';
+export * from './bill';
+export * from './branch-table';
+export * from './table-assignment';
