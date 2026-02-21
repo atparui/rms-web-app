@@ -23,7 +23,7 @@ export default function EditTablePage() {
   const [initialLoading, setInitialLoading] = useState(true);
   const [branches, setBranches] = useState<Branch[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState<Partial<BranchTable> & { id: string }>({ id, tableNumber: '', tableName: '', capacity: 4, floor: '', section: '', status: '', isActive: true });
+  const [formData, setFormData] = useState<Partial<BranchTable> & { id: string; branchId?: string }>({ id, tableNumber: '', tableName: '', capacity: 4, floor: '', section: '', status: '', isActive: true });
 
   useEffect(() => {
     branchApi.getAll().then(setBranches);
@@ -38,7 +38,7 @@ export default function EditTablePage() {
     try {
       setLoading(true);
       setError(null);
-      await branchTableApi.update(formData as any);
+      await branchTableApi.update({ id: formData.id, tableNumber: formData.tableNumber, tableName: formData.tableName, capacity: formData.capacity, floor: formData.floor, section: formData.section, status: formData.status, isActive: formData.isActive, branchId: formData.branchId });
       router.push('/tables');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed');
@@ -64,7 +64,7 @@ export default function EditTablePage() {
             <NumberField label="Capacity" value={formData.capacity} onValueChange={(v) => setFormData((p) => ({ ...p, capacity: v }))} />
             <TextField label="Floor" value={formData.floor} onChange={(v) => setFormData((p) => ({ ...p, floor: v }))} />
             <TextField label="Section" value={formData.section} onChange={(v) => setFormData((p) => ({ ...p, section: v }))} />
-            <SelectField id="status" label="Status" value={formData.status} onChange={(v) => setFormData((p) => ({ ...p, status: v }))} options={[{ value: 'AVAILABLE', label: 'Available' }, { value: 'OCCUPIED', label: 'Occupied' }, { value: 'RESERVED', label: 'Reserved' }]} />
+            <SelectField id="status" label="Status" value={formData.status ?? ''} onChange={(v) => setFormData((p) => ({ ...p, status: v }))} options={[{ value: 'AVAILABLE', label: 'Available' }, { value: 'OCCUPIED', label: 'Occupied' }, { value: 'RESERVED', label: 'Reserved' }]} />
             <CheckboxField label="Active" checked={formData.isActive ?? true} onCheckedChange={(v) => setFormData((p) => ({ ...p, isActive: !!v }))} />
             <div className="flex gap-2 pt-4"><Button type="submit" disabled={loading}>{loading ? 'Saving...' : 'Save'}</Button><Button type="button" variant="outline" onClick={() => router.push('/tables')}>Cancel</Button></div>
           </CardContent>

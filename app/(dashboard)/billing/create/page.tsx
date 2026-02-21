@@ -60,15 +60,15 @@ export default function CreateBillPage() {
           <CardContent className="space-y-4">
             <SelectField id="orderId" label="Order" value={formData.orderId} onChange={(v) => setFormData((p) => ({ ...p, orderId: v }))} options={orders.map((o) => ({ value: o.id, label: o.orderNumber || o.id }))} placeholder="Select order" />
             <SelectField id="branchId" label="Branch" value={formData.branchId} onChange={(v) => setFormData((p) => ({ ...p, branchId: v }))} options={branches.map((b) => ({ value: b.id, label: b.name }))} placeholder="Select branch" />
-            <SelectField id="customerId" label="Customer (optional)" value={formData.customerId} onChange={(v) => setFormData((p) => ({ ...p, customerId: v }))} options={[{ value: '', label: '—' }, ...customers.map((c) => ({ value: c.id, label: `${c.firstName} ${c.lastName}`.trim() || c.email }))]} placeholder="Optional" />
-            <TextField label="Bill number" value={formData.billNumber} onChange={(v) => setFormData((p) => ({ ...p, billNumber: v }))} />
-            <NumberField label="Subtotal" value={formData.subtotal} onValueChange={(v) => setFormData((p) => ({ ...p, subtotal: v ?? 0 }))} />
-            <NumberField label="Tax amount" value={formData.taxAmount} onValueChange={(v) => setFormData((p) => ({ ...p, taxAmount: v ?? 0 }))} />
-            <NumberField label="Discount amount" value={formData.discountAmount} onValueChange={(v) => setFormData((p) => ({ ...p, discountAmount: v ?? 0 }))} />
-            <NumberField label="Total amount" value={formData.totalAmount} onValueChange={(v) => setFormData((p) => ({ ...p, totalAmount: v ?? 0, amountDue: (v ?? 0) - formData.amountPaid }))} />
-            <NumberField label="Amount paid" value={formData.amountPaid} onValueChange={(v) => setFormData((p) => ({ ...p, amountPaid: v ?? 0, amountDue: formData.totalAmount - (v ?? 0) }))} />
-            <NumberField label="Amount due" value={formData.amountDue} onValueChange={(v) => setFormData((p) => ({ ...p, amountDue: v ?? 0 }))} />
-            <TextField label="Notes" value={formData.notes} onChange={(v) => setFormData((p) => ({ ...p, notes: v }))} />
+            <SelectField id="customerId" label="Customer (optional)" value={formData.customerId} onChange={(v) => setFormData((p) => ({ ...p, customerId: v }))} options={[{ value: '', label: '—' }, ...customers.map((c) => { const label: string = `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim() || (c.email ?? '—'); return { value: c.id, label }; })]} placeholder="Optional" />
+            <TextField id="billNumber" label="Bill number" value={formData.billNumber} onChange={(v) => setFormData((p) => ({ ...p, billNumber: v }))} />
+            <NumberField id="subtotal" label="Subtotal" value={formData.subtotal} onValueChange={(v) => setFormData((p) => ({ ...p, subtotal: v ?? 0 }))} />
+            <NumberField id="taxAmount" label="Tax amount" value={formData.taxAmount} onValueChange={(v) => setFormData((p) => ({ ...p, taxAmount: v ?? 0 }))} />
+            <NumberField id="discountAmount" label="Discount amount" value={formData.discountAmount} onValueChange={(v) => setFormData((p) => ({ ...p, discountAmount: v ?? 0 }))} />
+            <NumberField id="totalAmount" label="Total amount" value={formData.totalAmount} onValueChange={(v) => setFormData((p) => ({ ...p, totalAmount: v ?? 0, amountDue: (v ?? 0) - formData.amountPaid }))} />
+            <NumberField id="amountPaid" label="Amount paid" value={formData.amountPaid} onValueChange={(v) => setFormData((p) => ({ ...p, amountPaid: v ?? 0, amountDue: formData.totalAmount - (v ?? 0) }))} />
+            <NumberField id="amountDue" label="Amount due" value={formData.amountDue} onValueChange={(v) => setFormData((p) => ({ ...p, amountDue: v ?? 0 }))} />
+            <TextField id="notes" label="Notes" value={formData.notes} onChange={(v) => setFormData((p) => ({ ...p, notes: v }))} />
             <div className="flex gap-2 pt-4"><Button type="submit" disabled={loading}>{loading ? 'Creating...' : 'Create'}</Button><Button type="button" variant="outline" onClick={() => router.push('/billing')}>Cancel</Button></div>
           </CardContent>
         </Card>

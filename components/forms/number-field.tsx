@@ -4,10 +4,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export interface NumberFieldProps {
-  id: string;
+  id?: string;
   label: string;
   value: number | undefined;
-  onChange: (value: number) => void;
+  onChange?: (value: number) => void;
+  onValueChange?: (value: number | undefined) => void;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
@@ -34,10 +35,11 @@ export interface NumberFieldProps {
  * />
  */
 export function NumberField({
-  id,
+  id: idProp,
   label,
   value,
   onChange,
+  onValueChange,
   placeholder,
   required,
   disabled,
@@ -48,6 +50,8 @@ export function NumberField({
   step = 1,
   className,
 }: NumberFieldProps) {
+  const id = idProp ?? label.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '');
+  const handleChange = onChange ?? (v => onValueChange?.(v));
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>
@@ -58,7 +62,7 @@ export function NumberField({
         id={id}
         type="number"
         value={value || ''}
-        onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+        onChange={(e) => handleChange(parseFloat(e.target.value) || 0)}
         placeholder={placeholder}
         required={required}
         disabled={disabled}

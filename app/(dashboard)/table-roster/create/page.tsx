@@ -48,7 +48,7 @@ export default function CreateTableRosterPage() {
         <Card>
           <CardHeader><CardTitle>Table Roster</CardTitle><CardDescription>Table and date</CardDescription></CardHeader>
           <CardContent className="space-y-4">
-            <SelectField id="branchTableId" label="Table" value={formData.branchTableId} onChange={(v) => setFormData((p) => ({ ...p, branchTableId: v }))} options={tables.map((t) => ({ value: t.id, label: `${t.tableNumber} (${t.branch?.name})` }))} placeholder="Select table" />
+            <SelectField id="branchTableId" label="Table" value={formData.branchTableId} onChange={(v) => setFormData((p) => ({ ...p, branchTableId: v }))} options={tables.map((t) => ({ value: t.id, label: `${t.tableNumber} (${t.branch?.name ?? '—'})` }))} placeholder="Select table" />
             <div className="flex gap-2 pt-4"><Button type="submit" disabled={loading}>{loading ? 'Creating...' : 'Create'}</Button><Button type="button" variant="outline" onClick={() => router.push('/table-roster')}>Cancel</Button></div>
           </CardContent>
         </Card>

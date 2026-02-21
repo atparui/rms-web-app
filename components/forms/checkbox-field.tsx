@@ -4,10 +4,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 
 export interface CheckboxFieldProps {
-  id: string;
+  id?: string;
   label: string;
   checked: boolean;
-  onChange: (checked: boolean) => void;
+  onChange?: (checked: boolean) => void;
+  onCheckedChange?: (checked: boolean | 'indeterminate') => void;
   disabled?: boolean;
   error?: string;
   helpText?: string;
@@ -27,22 +28,28 @@ export interface CheckboxFieldProps {
  * />
  */
 export function CheckboxField({
-  id,
+  id: idProp,
   label,
   checked,
   onChange,
+  onCheckedChange,
   disabled,
   error,
   helpText,
   className,
 }: CheckboxFieldProps) {
+  const id = idProp ?? label.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '');
+  const handleChange = (value: boolean | 'indeterminate') => {
+    if (onChange) onChange(value === true);
+    else onCheckedChange?.(value);
+  };
   return (
     <div className="space-y-2">
       <div className="flex items-center space-x-2">
         <Checkbox
           id={id}
           checked={checked}
-          onCheckedChange={onChange}
+          onCheckedChange={handleChange}
           disabled={disabled}
           className={className}
         />

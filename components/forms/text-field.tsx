@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 export interface TextFieldProps {
-  id: string;
+  id?: string;
   label: string;
   value: string | undefined;
   onChange: (value: string) => void;
@@ -13,7 +13,7 @@ export interface TextFieldProps {
   disabled?: boolean;
   error?: string;
   helpText?: string;
-  type?: 'text' | 'email' | 'tel' | 'url' | 'password' | 'time';
+  type?: 'text' | 'email' | 'tel' | 'url' | 'password' | 'time' | 'date';
   maxLength?: number;
   className?: string;
 }
@@ -32,7 +32,7 @@ export interface TextFieldProps {
  * />
  */
 export function TextField({
-  id,
+  id: idProp,
   label,
   value,
   onChange,
@@ -45,6 +45,7 @@ export function TextField({
   maxLength,
   className,
 }: TextFieldProps) {
+  const id = idProp ?? label.replace(/\s+/g, '-').toLowerCase().replace(/[^a-z0-9-]/g, '');
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>
