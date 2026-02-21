@@ -21,6 +21,7 @@ export default function CreateBillPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const EMPTY_SELECT = '__none__';
   const [formData, setFormData] = useState({ orderId: '', branchId: '', customerId: '', billNumber: '', subtotal: 0, taxAmount: 0, discountAmount: 0, serviceCharge: 0, totalAmount: 0, amountPaid: 0, amountDue: 0, status: 'PENDING', notes: '' });
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function CreateBillPage() {
           <CardContent className="space-y-4">
             <SelectField id="orderId" label="Order" value={formData.orderId} onChange={(v) => setFormData((p) => ({ ...p, orderId: v }))} options={orders.map((o) => ({ value: o.id, label: o.orderNumber || o.id }))} placeholder="Select order" />
             <SelectField id="branchId" label="Branch" value={formData.branchId} onChange={(v) => setFormData((p) => ({ ...p, branchId: v }))} options={branches.map((b) => ({ value: b.id, label: b.name }))} placeholder="Select branch" />
-            <SelectField id="customerId" label="Customer (optional)" value={formData.customerId} onChange={(v) => setFormData((p) => ({ ...p, customerId: v }))} options={[{ value: '', label: '—' }, ...customers.map((c) => { const label: string = `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim() || (c.email ?? '—'); return { value: c.id, label }; })]} placeholder="Optional" />
+            <SelectField id="customerId" label="Customer (optional)" value={formData.customerId || EMPTY_SELECT} onChange={(v) => setFormData((p) => ({ ...p, customerId: v === EMPTY_SELECT ? '' : v }))} options={[{ value: EMPTY_SELECT, label: '—' }, ...customers.map((c) => { const label: string = `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim() || (c.email ?? '—'); return { value: c.id, label }; })]} placeholder="Optional" />
             <TextField id="billNumber" label="Bill number" value={formData.billNumber} onChange={(v) => setFormData((p) => ({ ...p, billNumber: v }))} />
             <NumberField id="subtotal" label="Subtotal" value={formData.subtotal} onValueChange={(v) => setFormData((p) => ({ ...p, subtotal: v ?? 0 }))} />
             <NumberField id="taxAmount" label="Tax amount" value={formData.taxAmount} onValueChange={(v) => setFormData((p) => ({ ...p, taxAmount: v ?? 0 }))} />

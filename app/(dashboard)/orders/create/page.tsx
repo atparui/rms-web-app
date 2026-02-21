@@ -21,6 +21,7 @@ export default function CreateOrderPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [tables, setTables] = useState<BranchTable[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const EMPTY_SELECT = '__none__';
   const [formData, setFormData] = useState({ branchId: '', customerId: '', branchTableId: '', orderNumber: '', orderType: 'DINE_IN', orderSource: 'POS', status: 'PENDING', subtotal: 0, taxAmount: 0, discountAmount: 0, totalAmount: 0, isPaid: false, specialInstructions: '' });
 
   useEffect(() => {
@@ -58,8 +59,8 @@ export default function CreateOrderPage() {
           <CardHeader><CardTitle>Order</CardTitle><CardDescription>Branch, customer, amounts</CardDescription></CardHeader>
           <CardContent className="space-y-4">
             <SelectField id="branchId" label="Branch" value={formData.branchId} onChange={(v) => setFormData((p) => ({ ...p, branchId: v }))} options={branches.map((b) => ({ value: b.id, label: b.name }))} placeholder="Select branch" />
-            <SelectField id="customerId" label="Customer (optional)" value={formData.customerId} onChange={(v) => setFormData((p) => ({ ...p, customerId: v }))} options={[{ value: '', label: '—' }, ...customers.map((c) => ({ value: c.id, label: `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim() || c.email || '—' }))]} placeholder="Optional" />
-            <SelectField id="branchTableId" label="Table (optional)" value={formData.branchTableId} onChange={(v) => setFormData((p) => ({ ...p, branchTableId: v }))} options={[{ value: '', label: '—' }, ...tables.map((t) => ({ value: t.id, label: t.tableNumber }))]} placeholder="Optional" />
+            <SelectField id="customerId" label="Customer (optional)" value={formData.customerId || EMPTY_SELECT} onChange={(v) => setFormData((p) => ({ ...p, customerId: v === EMPTY_SELECT ? '' : v }))} options={[{ value: EMPTY_SELECT, label: '—' }, ...customers.map((c) => ({ value: c.id, label: `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim() || (c.email ?? '—') }))]} placeholder="Optional" />
+            <SelectField id="branchTableId" label="Table (optional)" value={formData.branchTableId || EMPTY_SELECT} onChange={(v) => setFormData((p) => ({ ...p, branchTableId: v === EMPTY_SELECT ? '' : v }))} options={[{ value: EMPTY_SELECT, label: '—' }, ...tables.map((t) => ({ value: t.id, label: t.tableNumber ?? '—' }))]} placeholder="Optional" />
             <TextField label="Order number" value={formData.orderNumber} onChange={(v) => setFormData((p) => ({ ...p, orderNumber: v }))} />
             <SelectField id="orderType" label="Order type" value={formData.orderType} onChange={(v) => setFormData((p) => ({ ...p, orderType: v }))} options={[{ value: 'DINE_IN', label: 'Dine-in' }, { value: 'TAKEAWAY', label: 'Takeaway' }, { value: 'DELIVERY', label: 'Delivery' }]} />
             <NumberField label="Subtotal" value={formData.subtotal} onValueChange={(v) => setFormData((p) => ({ ...p, subtotal: v ?? 0 }))} />
